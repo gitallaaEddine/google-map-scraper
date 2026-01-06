@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Business Leads Dashboard</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="container">
+            <!-- Header -->
+            <header class="header">
+                <h1>📊 Business Leads Dashboard</h1>
+                <div class="stats" id="stats">
+                    <div class="stat-card">
+                        <span class="stat-value" id="stat-campaigns">0</span>
+                        <span class="stat-label">Campaigns</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-value" id="stat-leads">0</span>
+                        <span class="stat-label">Total Leads</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-value" id="stat-no-website">0</span>
+                        <span class="stat-label">No Website</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-value" id="stat-notes">0</span>
+                        <span class="stat-label">With Notes</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Main Content -->
+            <div class="main-content">
+                <!-- Sidebar: Campaign List -->
+                <aside class="sidebar" id="sidebar">
+                    <h2>📁 Campaigns</h2>
+                    <div class="campaign-list" id="campaign-list">
+                        <!-- Campaigns loaded here -->
+                    </div>
+                </aside>
+
+                <!-- Main: Leads Table -->
+                <main class="leads-section" id="leads-section">
+                    <div class="leads-header">
+                        <h2 id="campaign-title">Select a Campaign</h2>
+
+                        <!-- Filters -->
+                        <div class="filters" id="filters"
+                            style="display: none;">
+                            <select id="filter-website">
+                                <option value="all">All Leads</option>
+                                <option value="no">No Website</option>
+                                <option value="yes">Has Website</option>
+                            </select>
+                            <select id="filter-priority">
+                                <option value="all">All Priorities</option>
+                                <option value="critical">🔴 Critical</option>
+                                <option value="high">🟠 High</option>
+                                <option value="medium">🟡 Medium</option>
+                                <option value="low">🟢 Low</option>
+                                <option value="none">⚪ No Priority</option>
+                            </select>
+                            <select id="filter-note">
+                                <option value="all">All Notes</option>
+                                <option value="yes">Has Note</option>
+                                <option value="no">No Note</option>
+                            </select>
+                            <input type="text" id="filter-search"
+                                placeholder="🔍 Search business name...">
+                            <input type="number" id="filter-rating"
+                                placeholder="Min Rating (e.g. 4)" min="0"
+                                max="5" step="0.1">
+                        </div>
+                    </div>
+
+                    <!-- Leads Count -->
+                    <div class="leads-count" id="leads-count"
+                        style="display: none;">
+                        Showing <span id="showing-count">0</span> of <span
+                            id="total-count">0</span> leads
+                    </div>
+
+                    <!-- Leads Table -->
+                    <div class="leads-table-container">
+                        <table class="leads-table" id="leads-table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Phone</th>
+                                    <th>Rating</th>
+                                    <th>Website</th>
+                                    <th>Priority</th>
+                                    <th>Note</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="leads-body">
+                                <tr>
+                                    <td colspan="7" class="empty-state">
+                                        👈 Select a campaign to view leads
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </main>
+            </div>
+
+            <!-- Edit Modal -->
+            <div class="modal" id="edit-modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 id="modal-title">Edit Lead</h3>
+                        <button class="close-btn"
+                            onclick="closeModal()">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="lead-info" id="modal-lead-info"></div>
+
+                        <div class="form-group">
+                            <label for="edit-priority">Priority</label>
+                            <select id="edit-priority">
+                                <option value="none">⚪ None</option>
+                                <option value="low">🟢 Low</option>
+                                <option value="medium">🟡 Medium</option>
+                                <option value="high">🟠 High</option>
+                                <option value="critical">🔴 Critical</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="edit-note">Note</label>
+                            <textarea id="edit-note" rows="4"
+                                placeholder="Add notes about this lead..."></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary"
+                            onclick="closeModal()">Cancel</button>
+                        <button class="btn btn-primary"
+                            onclick="saveLead()">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="app.js"></script>
+    </body>
+</html>

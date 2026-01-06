@@ -1,0 +1,34 @@
+{
+    "name": "business-leads-scraper",
+    "version": "2.0.0",
+    "description": "Google Maps business scraper for lead generation - USA, Europe, Middle East",
+    "main": "index.js",
+    "scripts": {
+        "start": "node index.js",
+        "dev": "nodemon index.js",
+        "web": "node src/web/server.js",
+        "web:dev": "nodemon src/web/server.js",
+        "test": "node test.js",
+        "help": "node index.js -h"
+    },
+    "keywords": [
+        "scraping",
+        "google-maps",
+        "leads",
+        "b2b",
+        "lead-generation"
+    ],
+    "author": "Your Name",
+    "license": "MIT",
+    "dependencies": {
+        "dotenv": "^17.0.1",
+        "express": "^4.22.1",
+        "puppeteer": "^22.8.2"
+    },
+    "devDependencies": {
+        "nodemon": "^3.0.1"
+    },
+    "engines": {
+        "node": ">=14.0.0"
+    }
+}
