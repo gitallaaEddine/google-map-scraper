@@ -10,7 +10,13 @@
         <div class="container">
             <!-- Header -->
             <header class="header">
-                <h1>📊 Business Leads Dashboard</h1>
+                <div class="header-top">
+                    <h1>📊 Business Leads Dashboard</h1>
+                    <button class="theme-toggle" id="theme-toggle"
+                        onclick="toggleDarkMode()" title="Toggle Dark Mode">
+                        <span class="theme-icon">🌙</span>
+                    </button>
+                </div>
                 <div class="stats" id="stats">
                     <div class="stat-card">
                         <span class="stat-value" id="stat-campaigns">0</span>
@@ -91,6 +97,7 @@
                                     <th>Phone</th>
                                     <th>Rating</th>
                                     <th>Website</th>
+                                    <th>Maps</th>
                                     <th>Priority</th>
                                     <th>Note</th>
                                     <th>Actions</th>
@@ -98,7 +105,7 @@
                             </thead>
                             <tbody id="leads-body">
                                 <tr>
-                                    <td colspan="7" class="empty-state">
+                                    <td colspan="8" class="empty-state">
                                         👈 Select a campaign to view leads
                                     </td>
                                 </tr>

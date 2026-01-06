@@ -13,8 +13,33 @@ const filters = document.getElementById("filters");
 const leadsCount = document.getElementById("leads-count");
 const modal = document.getElementById("edit-modal");
 
+// Dark Mode
+function initDarkMode() {
+  const savedTheme = localStorage.getItem("theme");
+  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+  if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
+    document.body.classList.add("dark-mode");
+    updateThemeIcon(true);
+  }
+}
+
+function toggleDarkMode() {
+  const isDark = document.body.classList.toggle("dark-mode");
+  localStorage.setItem("theme", isDark ? "dark" : "light");
+  updateThemeIcon(isDark);
+}
+
+function updateThemeIcon(isDark) {
+  const icon = document.querySelector(".theme-icon");
+  if (icon) {
+    icon.textContent = isDark ? "☀️" : "🌙";
+  }
+}
+
 // Initialize
 document.addEventListener("DOMContentLoaded", () => {
+  initDarkMode();
   loadStats();
   loadCampaigns();
   setupFilters();
@@ -89,7 +114,7 @@ async function selectCampaign(campaignId) {
 
     // Load leads
     leadsBody.innerHTML =
-      '<tr><td colspan="7" class="loading">Loading leads</td></tr>';
+      '<tr><td colspan="8" class="loading">Loading leads</td></tr>';
 
     const res = await fetch(`/api/campaigns/${campaignId}/leads`);
     leads = await res.json();
@@ -98,7 +123,7 @@ async function selectCampaign(campaignId) {
   } catch (error) {
     console.error("Error loading leads:", error);
     leadsBody.innerHTML =
-      '<tr><td colspan="7" class="empty-state">Error loading leads</td></tr>';
+      '<tr><td colspan="8" class="empty-state">Error loading leads</td></tr>';
   }
 }
 
@@ -166,7 +191,7 @@ function renderLeads() {
 
   if (filteredLeads.length === 0) {
     leadsBody.innerHTML =
-      '<tr><td colspan="7" class="empty-state">No leads match your filters</td></tr>';
+      '<tr><td colspan="8" class="empty-state">No leads match your filters</td></tr>';
     return;
   }
 
@@ -182,14 +207,14 @@ function renderLeads() {
         ${
           lead.phone
             ? `<a href="tel:${lead.phone}">${escapeHtml(lead.phone)}</a>`
-            : '<span style="color:#ccc">—</span>'
+            : '<span class="empty-value">—</span>'
         }
       </td>
       <td class="lead-rating ${getRatingClass(lead.rating)}">
         ${
           lead.rating
             ? `⭐ ${lead.rating}`
-            : '<span style="color:#ccc">—</span>'
+            : '<span class="empty-value">—</span>'
         }
       </td>
       <td>
@@ -199,6 +224,15 @@ function renderLeads() {
                 lead.website
               )}" target="_blank" class="website-badge yes">🌐 Website</a>`
             : '<span class="website-badge no">No Website</span>'
+        }
+      </td>
+      <td>
+        ${
+          lead.referenceLink
+            ? `<a href="${escapeHtml(
+                lead.referenceLink
+              )}" target="_blank" class="maps-badge">📍 View</a>`
+            : '<span class="empty-value">—</span>'
         }
       </td>
       <td>
