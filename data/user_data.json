@@ -1,10 +1,259 @@
 {
   "leads": {
-    "campaign_test_run_1766772543873": {
+    "campaign_test_run_1766772543873": {},
+    "campaign_RV Repair_1767736542332": {
+      "5": {
+        "note": "terrible website , bad reviews because he doesn't response to messages\ninsta: https://www.instagram.com/retro_odyssey",
+        "priority": "critical",
+        "updatedAt": "2026-01-24T10:24:08.532Z"
+      },
+      "7": {
+        "note": "good reputation minimum landing page website only contact form to get him which i didn't check \nemail:info@infinitervrepair.com",
+        "priority": "medium",
+        "updatedAt": "2026-02-01T10:03:30.386Z"
+      },
+      "10": {
+        "note": "high reputation 389 reviews! , website broken, \nfb : https://www.facebook.com/NoRepairCost/",
+        "priority": "low",
+        "updatedAt": "2026-01-23T21:58:28.522Z"
+      },
+      "11": {
+        "note": "good reputation ,running ads ,using vue website under medium can improve too mcuh ,\ninst : https://www.instagram.com/roadsharkrv/?utm_source=ig_embed&ig_rid=d70ae578-e63a-468d-9a33-2e56002c48e3",
+        "priority": "medium",
+        "updatedAt": "2026-01-08T10:51:09.663Z"
+      },
+      "14": {
+        "note": "decent buisness that deserves a shoot,\nemail : michael@simicenter.com",
+        "priority": "high",
+        "updatedAt": "2026-02-01T13:46:13.693Z"
+      },
+      "17": {
+        "note": "good reviews but terrible website and absence in social media, \nsomeone said :These guys that literally have everything. They also sell used parts. Prices compatible with eBay and Amazon on a lot of stuff.\nfb:https://www.facebook.com/profile.php?id=100065080830974\n\nfb(not active) : https://www.facebook.com/profile.php?id=100065080830974&sk=followers",
+        "priority": "high",
+        "updatedAt": "2026-01-24T10:25:21.921Z"
+      },
+      "18": {
+        "note": "good reviews , terrible free website\nyahoo:dgautos23@yahoo.com\ngmail:tonymobilerepairs2014@gmail.com\nfb:https://www.facebook.com/p/Tony-Mobile-Repairs-100087986970756/",
+        "priority": "critical",
+        "updatedAt": "2026-01-08T11:02:25.376Z"
+      }
+    },
+    "campaign_Roofing Contractors Austin_1766780739153": {
       "1": {
-        "note": "this is a test of note let me check",
+        "note": "",
+        "priority": "low",
+        "updatedAt": "2026-01-07T17:55:11.325Z"
+      },
+      "13": {
+        "note": "really bad designed website and hard to get there contact except phone number or contact form which i didn't try yet, they have 4 places each has it's own home page",
+        "priority": "high",
+        "updatedAt": "2026-01-07T16:48:03.868Z"
+      },
+      "14": {
+        "note": "really bad designed website and hard to get there contact except phone number or contact form which i didn't try yet, they have 4 places each has it's own home page",
+        "priority": "high",
+        "updatedAt": "2026-01-07T16:48:11.237Z"
+      }
+    },
+    "campaign_Roofing Contractors RockfordIL_1766849961625": {
+      "5": {
+        "note": "bad design website , possible have to post a female ",
+        "priority": "high",
+        "updatedAt": "2026-01-07T18:07:37.280Z"
+      },
+      "6": {
+        "note": "terrible design but exposing a female ",
+        "priority": "high",
+        "updatedAt": "2026-01-07T18:11:56.412Z"
+      },
+      "11": {
+        "note": "high potentiel but has video with music",
+        "priority": "high",
+        "updatedAt": "2026-01-08T07:52:16.696Z"
+      },
+      "12": {
+        "note": "",
+        "priority": "low",
+        "updatedAt": "2026-01-08T07:56:34.827Z"
+      },
+      "14": {
+        "note": "",
+        "priority": "low",
+        "updatedAt": "2026-01-08T07:58:27.238Z"
+      },
+      "16": {
+        "note": "really high potentiel ,they have good reputation but the website lack from a lot of information, a good loom video can do the job\nfb : https://www.facebook.com/Thereal1stContracting/",
+        "priority": "critical",
+        "updatedAt": "2026-01-08T10:20:22.011Z"
+      },
+      "17": {
+        "note": "website is down",
+        "priority": "high",
+        "updatedAt": "2026-01-08T08:12:05.282Z"
+      },
+      "18": {
+        "note": "small reputation and bad designed website ",
+        "priority": "medium",
+        "updatedAt": "2026-01-08T08:21:58.825Z"
+      },
+      "32": {
+        "note": "high potentiel but zero way to contact",
+        "priority": "high",
+        "updatedAt": "2026-01-08T08:36:51.658Z"
+      },
+      "42": {
+        "note": "really high potentiel \"terrible old 2005 website\" , good reviews still active, fb account : https://www.facebook.com/profile.php?id=100063699577078",
+        "priority": "critical",
+        "updatedAt": "2026-01-08T10:01:25.057Z"
+      },
+      "43": {
+        "note": "average website that can be better then that",
+        "priority": "medium",
+        "updatedAt": "2026-01-08T10:04:51.104Z"
+      },
+      "47": {
+        "note": "bad website but still can get a shoot",
+        "priority": "medium",
+        "updatedAt": "2026-01-08T10:07:59.352Z"
+      },
+      "50": {
+        "note": "probably out of busines",
+        "priority": "medium",
+        "updatedAt": "2026-01-08T10:09:31.761Z"
+      },
+      "51": {
+        "note": "",
         "priority": "none",
-        "updatedAt": "2026-01-03T14:22:56.494Z"
+        "updatedAt": "2026-01-08T10:09:39.642Z"
+      },
+      "54": {
+        "note": "website not working, still on business \nfb: https://www.facebook.com/PHBROOFING/",
+        "priority": "high",
+        "updatedAt": "2026-01-08T10:14:00.914Z"
+      }
+    },
+    "campaign_RV_repair_Phoenix_1768412952882": {
+      "2": {
+        "note": "this is good to use as reference",
+        "priority": "low",
+        "updatedAt": "2026-01-14T18:09:38.496Z"
+      },
+      "3": {
+        "note": "a perfect review record with a bad website , doesn't look active on social media ,\nfb : https://www.facebook.com/RvnerdLLC/",
+        "priority": "high",
+        "updatedAt": "2026-01-14T18:15:50.295Z"
+      },
+      "4": {
+        "note": "just 20 reviews with a terrible website \nEmail:\nOperations Manager: doug@kingrepairservicesaz.com    Office Manager: cassie@kingrepairservicesaz.com ",
+        "priority": "high",
+        "updatedAt": "2026-01-24T09:56:15.067Z"
+      },
+      "5": {
+        "note": "1st potentiel !!!!\nbest review record i have ever seen with a terrible website a combo that shouldn't exist \nowner name : albert\nhelpmyrvrepairsllc@gmail.com\nfb https://www.facebook.com/Helpmyrv\ninsta https://www.instagram.com/helpmyrvrepairs",
+        "priority": "critical",
+        "updatedAt": "2026-01-24T10:41:10.363Z"
+      }
+    },
+    "campaign_RV_repair_Miami_1769954784816": {
+      "6": {
+        "note": "looks like a new buisness might give him a free website service\nemail: Empiretruckandrv@gmail.com ",
+        "priority": "critical",
+        "updatedAt": "2026-02-01T14:17:41.034Z"
+      }
+    },
+    "campaign_RV_Repair_Dallas_1769963825491": {
+      "1": {
+        "note": "DONE deserves a shoot \nemail :RVmedicsDFW@gmail.com",
+        "priority": "medium",
+        "updatedAt": "2026-02-02T14:17:32.537Z"
+      }
+    },
+    "campaign_RV_Repair_Dallas_Texas_USA_1769963762124": {
+      "3": {
+        "note": "bad website , could be a potential client except i didn't any form of contact excpet contact form\n\n",
+        "priority": "medium",
+        "updatedAt": "2026-02-01T17:04:09.302Z"
+      },
+      "5": {
+        "note": "nothing to lose to shoot this guy\nfb(idk if works): https://www.facebook.com/T'sMobileRVRepair",
+        "priority": "medium",
+        "updatedAt": "2026-02-01T16:52:33.170Z"
+      }
+    },
+    "campaign_RV_Repair_Houston_1769965662538": {
+      "12": {
+        "note": "done",
+        "priority": "high",
+        "updatedAt": "2026-02-02T13:20:49.806Z"
+      },
+      "15": {
+        "note": "deserves a shoot \n21 rev\nemail angelsmobilervrepair@gmail.com",
+        "priority": "medium",
+        "updatedAt": "2026-02-01T18:16:05.231Z"
+      },
+      "17": {
+        "note": "it's okay to shoot your shoot if you ever found the email",
+        "priority": "low",
+        "updatedAt": "2026-02-01T18:17:39.200Z"
+      },
+      "18": {
+        "note": "they can make use of a new website \nemail braden@houstonmobilerv.com",
+        "priority": "medium",
+        "updatedAt": "2026-02-01T18:21:37.579Z"
+      },
+      "19": {
+        "note": "they don't look active but take your shoot \nemail service@toprvrepair.com",
+        "priority": "medium",
+        "updatedAt": "2026-02-01T18:23:03.168Z"
+      },
+      "20": {
+        "note": "they can make use of a new website, there lack from a lot of things\nemail \nhgruen@bobjonesrv.com",
+        "priority": "medium",
+        "updatedAt": "2026-02-01T18:26:52.468Z"
+      },
+      "21": {
+        "note": "DONE \nalmost zero design pure SEO , take your shoot\nemail : homeawaycampingtx@gmail.com",
+        "priority": "medium",
+        "updatedAt": "2026-02-02T13:34:05.457Z"
+      },
+      "25": {
+        "note": "DONE ,\nminimum website take your shoot \nemail  info@cdrvservicecenter.com",
+        "priority": "medium",
+        "updatedAt": "2026-02-02T13:48:58.706Z"
+      },
+      "27": {
+        "note": "no email take your shoot in contact form",
+        "priority": "low",
+        "updatedAt": "2026-02-01T18:35:48.328Z"
+      }
+    },
+    "campaign_RV_Repair_San_Antonio_1770042980253": {
+      "15": {
+        "note": "if no reply go for free website ",
+        "priority": "critical",
+        "updatedAt": "2026-02-04T16:40:02.744Z"
+      },
+      "23": {
+        "note": "dm in fb :https://www.facebook.com/profile.php?id=100083013708481&sk=photos \n\nhey just found your profile and loved your work ! do you have a website ? i couldn't check your services \nv1:\nChecking out your profile it looks super awesome and then I found that you could use of a website so I was curious if you ever thought about having a place where you can display your work to more eyes in a better way. Uh yeah, if that sounds like something that would interest you , you can shoot me a text . \n\nv2:\nNo worries at all.\nI’ve worked with a few RV services around Texas, and I usually look at how competitors present their work online.\nWhen I came across your profile, I was curious if you’d ever thought about having a website — something that shows your work clearly and helps with Google Maps visibility.\n\n(small pause — important)\n\nAnd since this wouldn’t be a remodel, I can actually put together a free design first.\nIf you like it, we can talk about a price that makes sense for you.\nIf not, no hard feelings at all — there’s no risk on your side.\n\nIf that sounds interesting, feel free to text me.",
+        "priority": "critical",
+        "updatedAt": "2026-02-06T18:21:25.511Z"
+      },
+      "26": {
+        "note": "send in fb : https://www.facebook.com/profile.php?id=100063662122093&ref=hl\n\n\nhey just found your profile and loved your work ! are you still in business ?\n\nthat is great, \nI’ve worked with a few RV services around Texas, and I usually look at how competitors present their work online.\nWhen I came across your website. I found that it could use a lot of improvement and so I was curious if you ever thought about changing into something better and possibly have a place where you can display your work to more eyes in a better way.\n\n(small pause — important)\n\nAnd I can actually put together a free design first.\nIf you like it, we can talk about a price that makes sense for you.\nIf not, no hard feelings at all — there’s no risk on your side.\n\nIf that sounds interesting, feel free to text me.",
+        "priority": "high",
+        "updatedAt": "2026-02-06T22:00:17.997Z"
+      }
+    },
+    "campaign_RV_Repair_Austin_1770298691875": {
+      "5": {
+        "note": "done",
+        "priority": "low",
+        "updatedAt": "2026-02-05T14:52:06.398Z"
+      },
+      "14": {
+        "note": "dm fb done",
+        "priority": "high",
+        "updatedAt": "2026-02-05T21:10:32.296Z"
       }
     }
   }
