@@ -34,6 +34,15 @@
                         <span class="stat-value" id="stat-notes">0</span>
                         <span class="stat-label">With Notes</span>
                     </div>
+                    <div class="stat-card clickable" onclick="showTrash()">
+                        <span class="stat-value" id="stat-trash">0</span>
+                        <span class="stat-label">🗑️ Trash</span>
+                    </div>
+                    <div class="stat-card clickable action-card"
+                        onclick="scanDuplicates()">
+                        <span class="stat-value">🔍</span>
+                        <span class="stat-label">Scan Duplicates</span>
+                    </div>
                 </div>
             </header>
 
@@ -144,10 +153,53 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-secondary"
-                            onclick="closeModal()">Cancel</button>
-                        <button class="btn btn-primary"
-                            onclick="saveLead()">Save</button>
+                        <button class="btn btn-danger"
+                            onclick="deleteLead()">🗑️ Delete</button>
+                        <div class="modal-footer-right">
+                            <button class="btn btn-secondary"
+                                onclick="closeModal()">Cancel</button>
+                            <button class="btn btn-primary"
+                                onclick="saveLead()">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trash Modal -->
+            <div class="modal" id="trash-modal">
+                <div class="modal-content modal-large">
+                    <div class="modal-header">
+                        <h3>🗑️ Trash</h3>
+                        <button class="close-btn"
+                            onclick="closeTrashModal()">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="trash-actions" id="trash-actions"
+                            style="display: none;">
+                            <button class="btn btn-danger btn-small"
+                                onclick="emptyTrash()">Empty Trash</button>
+                        </div>
+                        <div class="trash-list" id="trash-list">
+                            <!-- Trash items loaded here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Duplicates Modal -->
+            <div class="modal" id="duplicates-modal">
+                <div class="modal-content modal-large">
+                    <div class="modal-header">
+                        <h3>🔍 Duplicate Leads</h3>
+                        <button class="close-btn"
+                            onclick="closeDuplicatesModal()">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="duplicates-stats"
+                            id="duplicates-stats"></div>
+                        <div class="duplicates-list" id="duplicates-list">
+                            <!-- Duplicates loaded here -->
+                        </div>
                     </div>
                 </div>
             </div>

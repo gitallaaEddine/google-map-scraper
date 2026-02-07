@@ -1,4 +1,4 @@
-# Business Leads Scraper - User Guide
+   # Business Leads Scraper - User Guide
 
 ## 🚀 Getting Started
 
@@ -24,12 +24,13 @@ node index.js [options]
 
 ### Options
 
-| Option     | Short | Description                             | Default               |
-| ---------- | ----- | --------------------------------------- | --------------------- |
-| `--query`  | `-q`  | Search query (business type + location) | "restaurant new york" |
-| `--length` | `-l`  | Number of results to scrape (max 100)   | 20                    |
-| `--name`   | `-n`  | Campaign name for output folder         | auto-generated        |
-| `--help`   | `-h`  | Show help message                       | -                     |
+| Option               | Short | Description                                   | Default               |
+| -------------------- | ----- | --------------------------------------------- | --------------------- |
+| `--query`            | `-q`  | Search query (business type + location)       | "restaurant new york" |
+| `--length`           | `-l`  | Number of results to scrape (max 100)         | 20                    |
+| `--name`             | `-n`  | Campaign name for output folder               | auto-generated        |
+| `--allow-duplicates` | `-d`  | Include leads already scraped (default: skip) | false                 |
+| `--help`             | `-h`  | Show help message                             | -                     |
 
 ### Examples
 
@@ -48,7 +49,106 @@ node index.js -q "Dental Clinic Berlin" -l 25
 node index.js -q "Restaurant Dubai" -l 50
 node index.js -q "Real Estate Agency Abu Dhabi" -l 30
 node index.js -q "Auto Repair Riyadh" -l 20
+
+# Re-scrape same query (only new leads)
+node index.js -q "Restaurant New York" -l 50
+
+# Re-scrape including duplicates
+node index.js -q "Restaurant New York" -l 50 -d
 ```
+
+## 🔄 Scraping the Same Query Again
+
+### Automatic Deduplication
+
+When you scrape the same query again, **duplicates are automatically skipped**:
+
+```bash
+# First scrape
+node index.js -q "Restaurant Manhattan" -l 50
+# Result: 50 new leads saved
+
+# Second scrape (same query)
+node index.js -q "Restaurant Manhattan" -l 50
+# Result: Only NEW leads are saved (duplicates skipped)
+```
+
+### How It Works
+
+1. **Phone Number Matching** - Primary identifier (most reliable)
+2. **Name + Address Matching** - Fallback when no phone available
+3. **Blacklist Check** - Deleted leads are never scraped again
+
+### Deduplication Stats
+
+After each scrape, you'll see:
+
+```
+📋 Deduplication Results:
+   • Total scraped: 50
+   • New leads: 23
+   • Skipped (already scraped): 27
+   • Skipped (blacklisted/deleted): 0
+```
+
+### Including Duplicates
+
+To scrape duplicates (not recommended):
+
+```bash
+node index.js -q "Restaurant Manhattan" -l 50 -d
+```
+
+**⚠️ Note:** Blacklisted (deleted) leads are NEVER scraped, even with `-d` flag.
+
+### Workflow for Re-scraping
+
+1. **Monthly Updates**
+
+   ```bash
+   # Scrape again after a month to find new businesses
+   node index.js -q "Plumber Chicago" -l 100
+   ```
+
+2. **Expanding Territory**
+
+   ```bash
+   # Same business type, different location
+   node index.js -q "Plumber Chicago Downtown" -l 50
+   node index.js -q "Plumber Chicago Suburbs" -l 50
+   ```
+
+3. **Clean Slate** (if needed)
+   - Delete `data/history.json` to reset duplicate tracking
+   - Keep `data/blacklist.json` to maintain deleted leads list
+
+## 🗑️ Managing Leads (Dashboard)
+
+### Delete & Trash System
+
+**Access the dashboard:**
+
+```bash
+npm run web
+# Opens at http://localhost:3000
+```
+
+### Deleting Leads
+
+1. Open a campaign
+2. Click "Edit" on any lead
+3. Click "🗑️ Delete" button
+4. Lead moves to Trash and is **blacklisted from future scrapes**
+
+### Trash Management
+
+Click the **"🗑️ Trash"** stat card in the header to:
+
+- **Restore** → Returns lead to original campaign (removes from blacklist)
+- **Permanently Delete** → Removes from trash (stays blacklisted)
+- **Empty Trash** → Clears all trash items
+
+**Important:** Deleted leads won't appear in future scrapes, even if you re-scrape the same query.
 
 ## 📁 Output Structure
 
@@ -152,8 +252,30 @@ node index.js -q "Coffee Shop Boston" -l 10
 
 # Full campaign with custom name
 node index.js -q "Plumber Miami" -l 50 -n "Miami_Plumbers_Dec2025"
+
+# Re-scrape (only new leads saved)
+node index.js -q "Plumber Miami" -l 50
+
+# Web dashboard
+npm run web
+```
+
+## 📂 Data Files
+
+The tool creates organized data files:
+
+```
+data/
+├── history.json          # All scraped leads (for duplicate detection)
+├── blacklist.json        # Deleted leads (never scraped again)
+├── trash/
+│   └── deleted_leads.json # Soft-deleted leads (can restore)
+└── user_data.json        # Your notes and priorities
+
+output/
+└── campaign_*/           # Campaign folders with leads
 ```
 
 ---
 
-_Simple CLI tool for Google Maps lead generation_
+_Simple CLI tool for Google Maps lead generation with smart deduplication_

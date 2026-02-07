@@ -1,0 +1,96 @@
+{
+  "leads": {
+    "name:down_under_coffee|addr:1000_8th_ave": {
+      "name": "Down Under Coffee",
+      "phone": "",
+      "address": "1000 8th Ave",
+      "reason": "deleted",
+      "blacklistedAt": "2026-01-06T22:17:58.818Z"
+    },
+    "phone:18156167219": {
+      "name": "EC Roofing & Siding Corp.",
+      "phone": "+1 815-616-7219",
+      "address": "Open · Closes 5 PM",
+      "reason": "deleted",
+      "blacklistedAt": "2026-01-08T09:50:19.073Z"
+    },
+    "phone:15624707276": {
+      "name": "The RV Repair Guy",
+      "phone": "+1 562-470-7276",
+      "address": "Closed · Opens 10 AM",
+      "reason": "deleted",
+      "blacklistedAt": "2026-01-23T20:40:31.030Z"
+    },
+    "phone:18155193282": {
+      "name": "Double A Roofing & Siding Inc",
+      "phone": "+1 815-519-3282",
+      "address": "Open · Closes 12 AM",
+      "reason": "deleted",
+      "blacklistedAt": "2026-01-23T20:40:59.044Z"
+    },
+    "phone:18185632072": {
+      "name": "Lodgemobile Inc",
+      "phone": "+1 818-563-2072",
+      "address": "1220 S Victory Blvd # A",
+      "reason": "deleted",
+      "blacklistedAt": "2026-01-23T20:40:59.068Z"
+    },
+    "phone:17148800303": {
+      "name": "Rv Express Mobile Service LLC",
+      "phone": "+1 714-880-0303",
+      "address": "Open · Closes 5 PM",
+      "reason": "deleted",
+      "blacklistedAt": "2026-01-23T20:40:59.084Z"
+    },
+    "phone:17142487855": {
+      "name": "Infinite RV Mobile Service & Repair",
+      "phone": "+1 714-248-7855",
+      "address": "801 Chestnut Ave",
+      "reason": "deleted",
+      "blacklistedAt": "2026-01-23T20:40:59.099Z"
+    },
+    "phone:14248882507": {
+      "name": "Road Shark RV Rentals",
+      "phone": "+1 424-888-2507",
+      "address": "Open · Closes 6 PM",
+      "reason": "deleted",
+      "blacklistedAt": "2026-01-23T20:40:59.115Z"
+    },
+    "phone:18188898889": {
+      "name": "Coast RV Center",
+      "phone": "+1 818-889-8889",
+      "address": "28404 Roadside Dr",
+      "reason": "deleted",
+      "blacklistedAt": "2026-01-23T20:40:59.132Z"
+    },
+    "phone:18187801288": {
+      "name": "Tru-Line Auto, Truck, RV Tire and Service.",
+      "phone": "+1 818-780-1288",
+      "address": "Open · Closes 5 PM",
+      "reason": "deleted",
+      "blacklistedAt": "2026-01-23T20:40:59.147Z"
+    },
+    "phone:17143343194": {
+      "name": "Tony Mobile Repairs",
+      "phone": "+1 714-334-3194",
+      "address": "Open · Closes 6 PM",
+      "reason": "deleted",
+      "blacklistedAt": "2026-01-23T20:40:59.164Z"
+    },
+    "phone:16263377279": {
+      "name": "Benlo Co",
+      "phone": "+1 626-337-7279",
+      "address": "15633 Arrow Hwy",
+      "reason": "deleted",
+      "blacklistedAt": "2026-01-23T20:40:59.181Z"
+    },
+    "phone:18188502009": {
+      "name": "LA RV Center",
+      "phone": "+1 818-850-2009",
+      "address": "1220 S Victory Blvd",
+      "reason": "deleted",
+      "blacklistedAt": "2026-02-01T11:12:09.513Z"
+    }
+  },
+  "lastUpdated": "2026-02-01T11:12:09.514Z"
+}

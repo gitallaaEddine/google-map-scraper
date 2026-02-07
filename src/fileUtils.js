@@ -1,6 +1,285 @@
 const fs = require("fs");
+const path = require("path");
+
+// Paths for deduplication system
+const DATA_DIR = path.join(__dirname, "../data");
+const HISTORY_FILE = path.join(DATA_DIR, "history.json");
+const BLACKLIST_FILE = path.join(DATA_DIR, "blacklist.json");
+const TRASH_DIR = path.join(DATA_DIR, "trash");
 
 class FileUtils {
+  // ==================== DEDUPLICATION SYSTEM ====================
+
+  // Ensure data directories exist
+  static ensureDataDirs() {
+    if (!fs.existsSync(DATA_DIR)) {
+      fs.mkdirSync(DATA_DIR, { recursive: true });
+    }
+    if (!fs.existsSync(TRASH_DIR)) {
+      fs.mkdirSync(TRASH_DIR, { recursive: true });
+    }
+  }
+
+  // Generate unique identifier for a lead (phone preferred, fallback to name+address hash)
+  static generateLeadId(lead) {
+    if (lead.phone && lead.phone.trim()) {
+      // Clean phone: remove all non-digits
+      return `phone:${lead.phone.replace(/\D/g, "")}`;
+    }
+    // Fallback: name + address normalized
+    const nameNorm = (lead.name || "")
+      .toLowerCase()
+      .trim()
+      .replace(/\s+/g, "_");
+    const addrNorm = (lead.address || "")
+      .toLowerCase()
+      .trim()
+      .replace(/\s+/g, "_")
+      .substring(0, 50);
+    return `name:${nameNorm}|addr:${addrNorm}`;
+  }
+
+  // Load history of all scraped leads
+  static loadHistory() {
+    this.ensureDataDirs();
+    try {
+      if (fs.existsSync(HISTORY_FILE)) {
+        return JSON.parse(fs.readFileSync(HISTORY_FILE, "utf8"));
+      }
+    } catch (error) {
+      console.error("Error loading history:", error.message);
+    }
+    return { leads: {}, lastUpdated: null };
+  }
+
+  // Save lead to history
+  static addToHistory(lead, campaignId) {
+    const history = this.loadHistory();
+    const leadId = this.generateLeadId(lead);
+
+    history.leads[leadId] = {
+      name: lead.name,
+      phone: lead.phone,
+      address: lead.address,
+      campaignId: campaignId,
+      addedAt: new Date().toISOString(),
+    };
+    history.lastUpdated = new Date().toISOString();
+
+    fs.writeFileSync(HISTORY_FILE, JSON.stringify(history, null, 2));
+  }
+
+  // Add multiple leads to history
+  static addManyToHistory(leads, campaignId) {
+    const history = this.loadHistory();
+
+    leads.forEach((lead) => {
+      const leadId = this.generateLeadId(lead);
+      history.leads[leadId] = {
+        name: lead.name,
+        phone: lead.phone,
+        address: lead.address,
+        campaignId: campaignId,
+        addedAt: new Date().toISOString(),
+      };
+    });
+
+    history.lastUpdated = new Date().toISOString();
+    fs.writeFileSync(HISTORY_FILE, JSON.stringify(history, null, 2));
+  }
+
+  // Check if lead exists in history
+  static isInHistory(lead) {
+    const history = this.loadHistory();
+    const leadId = this.generateLeadId(lead);
+    return !!history.leads[leadId];
+  }
+
+  // Load blacklist (deleted leads that should never be scraped again)
+  static loadBlacklist() {
+    this.ensureDataDirs();
+    try {
+      if (fs.existsSync(BLACKLIST_FILE)) {
+        return JSON.parse(fs.readFileSync(BLACKLIST_FILE, "utf8"));
+      }
+    } catch (error) {
+      console.error("Error loading blacklist:", error.message);
+    }
+    return { leads: {}, lastUpdated: null };
+  }
+
+  // Add lead to blacklist
+  static addToBlacklist(lead, reason = "deleted") {
+    const blacklist = this.loadBlacklist();
+    const leadId = this.generateLeadId(lead);
+
+    blacklist.leads[leadId] = {
+      name: lead.name,
+      phone: lead.phone,
+      address: lead.address,
+      reason: reason,
+      blacklistedAt: new Date().toISOString(),
+    };
+    blacklist.lastUpdated = new Date().toISOString();
+
+    fs.writeFileSync(BLACKLIST_FILE, JSON.stringify(blacklist, null, 2));
+  }
+
+  // Remove lead from blacklist (for restore from trash)
+  static removeFromBlacklist(lead) {
+    const blacklist = this.loadBlacklist();
+    const leadId = this.generateLeadId(lead);
+
+    if (blacklist.leads[leadId]) {
+      delete blacklist.leads[leadId];
+      blacklist.lastUpdated = new Date().toISOString();
+      fs.writeFileSync(BLACKLIST_FILE, JSON.stringify(blacklist, null, 2));
+      return true;
+    }
+    return false;
+  }
+
+  // Check if lead is blacklisted
+  static isBlacklisted(lead) {
+    const blacklist = this.loadBlacklist();
+    const leadId = this.generateLeadId(lead);
+    return !!blacklist.leads[leadId];
+  }
+
+  // Filter out duplicates and blacklisted leads from scraped results
+  static filterNewLeads(leads, skipDuplicates = true, skipBlacklisted = true) {
+    const history = skipDuplicates ? this.loadHistory() : { leads: {} };
+    const blacklist = skipBlacklisted ? this.loadBlacklist() : { leads: {} };
+
+    const newLeads = [];
+    const skippedDuplicates = [];
+    const skippedBlacklisted = [];
+
+    leads.forEach((lead) => {
+      const leadId = this.generateLeadId(lead);
+
+      if (blacklist.leads[leadId]) {
+        skippedBlacklisted.push(lead);
+      } else if (history.leads[leadId]) {
+        skippedDuplicates.push(lead);
+      } else {
+        newLeads.push(lead);
+      }
+    });
+
+    return {
+      newLeads,
+      skippedDuplicates,
+      skippedBlacklisted,
+      stats: {
+        total: leads.length,
+        new: newLeads.length,
+        duplicates: skippedDuplicates.length,
+        blacklisted: skippedBlacklisted.length,
+      },
+    };
+  }
+
+  // ==================== TRASH SYSTEM ====================
+
+  // Move lead to trash
+  static moveToTrash(lead, campaignId) {
+    this.ensureDataDirs();
+
+    const trashEntry = {
+      ...lead,
+      campaignId: campaignId,
+      deletedAt: new Date().toISOString(),
+    };
+
+    // Load or create trash file
+    const trashFile = path.join(TRASH_DIR, "deleted_leads.json");
+    let trash = { leads: [], lastUpdated: null };
+
+    try {
+      if (fs.existsSync(trashFile)) {
+        trash = JSON.parse(fs.readFileSync(trashFile, "utf8"));
+      }
+    } catch (error) {
+      console.error("Error loading trash:", error.message);
+    }
+
+    // Add to trash
+    trash.leads.push(trashEntry);
+    trash.lastUpdated = new Date().toISOString();
+
+    fs.writeFileSync(trashFile, JSON.stringify(trash, null, 2));
+
+    // Add to blacklist so it won't be scraped again
+    this.addToBlacklist(lead, "deleted");
+
+    return trashEntry;
+  }
+
+  // Get all trash items
+  static getTrash() {
+    this.ensureDataDirs();
+    const trashFile = path.join(TRASH_DIR, "deleted_leads.json");
+
+    try {
+      if (fs.existsSync(trashFile)) {
+        return JSON.parse(fs.readFileSync(trashFile, "utf8"));
+      }
+    } catch (error) {
+      console.error("Error loading trash:", error.message);
+    }
+
+    return { leads: [], lastUpdated: null };
+  }
+
+  // Restore lead from trash
+  static restoreFromTrash(trashIndex) {
+    const trash = this.getTrash();
+
+    if (trashIndex < 0 || trashIndex >= trash.leads.length) {
+      return null;
+    }
+
+    const lead = trash.leads.splice(trashIndex, 1)[0];
+    trash.lastUpdated = new Date().toISOString();
+
+    const trashFile = path.join(TRASH_DIR, "deleted_leads.json");
+    fs.writeFileSync(trashFile, JSON.stringify(trash, null, 2));
+
+    // Remove from blacklist
+    this.removeFromBlacklist(lead);
+
+    return lead;
+  }
+
+  // Permanently delete from trash
+  static permanentlyDelete(trashIndex) {
+    const trash = this.getTrash();
+
+    if (trashIndex < 0 || trashIndex >= trash.leads.length) {
+      return null;
+    }
+
+    const lead = trash.leads.splice(trashIndex, 1)[0];
+    trash.lastUpdated = new Date().toISOString();
+
+    const trashFile = path.join(TRASH_DIR, "deleted_leads.json");
+    fs.writeFileSync(trashFile, JSON.stringify(trash, null, 2));
+
+    // Keep in blacklist (still won't be scraped again)
+    return lead;
+  }
+
+  // Empty entire trash (permanently delete all)
+  static emptyTrash() {
+    const trashFile = path.join(TRASH_DIR, "deleted_leads.json");
+    const trash = { leads: [], lastUpdated: new Date().toISOString() };
+    fs.writeFileSync(trashFile, JSON.stringify(trash, null, 2));
+    return true;
+  }
+
+  // ==================== ORIGINAL FILE OPERATIONS ====================
+
   static async saveToFile(data, filename = "business_leads") {
     const timestamp = new Date().toISOString().split("T")[0];
     const csvFilename = `output/${filename}_${timestamp}.csv`;
