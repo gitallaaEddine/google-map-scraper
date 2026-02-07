@@ -615,15 +615,6 @@ body.dark-mode .priority-badge.none {
     border-color: var(--accent-color);
 }
 
-.modal-footer {
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px;
-    padding: 15px 20px;
-    border-top: 1px solid var(--border-color);
-    background: var(--bg-tertiary);
-}
-
 /* Responsive */
 @media (max-width: 900px) {
     .main-content {
@@ -702,4 +693,340 @@ body.dark-mode .priority-badge.none {
     to {
         transform: rotate(360deg);
     }
+}
+
+/* Clickable stat card */
+.stat-card.clickable {
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.stat-card.clickable:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: scale(1.05);
+}
+
+/* Danger button */
+.btn-danger {
+    background: #dc2626;
+    color: white;
+}
+
+.btn-danger:hover {
+    background: #b91c1c;
+}
+
+/* Modal footer with delete */
+.modal-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 20px;
+    border-top: 1px solid var(--border-color);
+    background: var(--bg-tertiary);
+}
+
+.modal-footer-right {
+    display: flex;
+    gap: 10px;
+}
+
+/* Large modal for trash */
+.modal-large {
+    max-width: 700px;
+}
+
+/* Trash list */
+.trash-actions {
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.trash-list {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.trash-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    margin-bottom: 10px;
+    background: var(--bg-secondary);
+    transition: all 0.2s;
+}
+
+.trash-item:hover {
+    background: var(--bg-tertiary);
+}
+
+.trash-item-info {
+    flex: 1;
+}
+
+.trash-item-name {
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+
+.trash-item-meta {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+}
+
+.trash-item-date {
+    font-size: 0.75rem;
+    color: var(--text-light);
+}
+
+.trash-item-actions {
+    display: flex;
+    gap: 8px;
+}
+
+/* Empty state in modals */
+.trash-list .empty-state,
+.duplicates-list .empty-state {
+    text-align: center;
+    padding: 40px;
+    color: var(--text-light);
+}
+
+/* ===== Duplicates Modal Styles ===== */
+.duplicates-list {
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+.stats-summary {
+    display: flex;
+    gap: 20px;
+    padding: 16px;
+    background: var(--bg-secondary);
+    border-radius: 8px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.stats-summary .stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px 16px;
+}
+
+.stats-summary .stat-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.stats-summary .stat-label {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.duplicate-item {
+    background: var(--bg-secondary);
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 12px;
+    border-left: 4px solid #f59e0b;
+}
+
+.duplicate-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.duplicate-name {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--text-primary);
+}
+
+.duplicate-match {
+    font-size: 0.85rem;
+    color: #f59e0b;
+    background: rgba(245, 158, 11, 0.1);
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.duplicate-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.duplicate-entry {
+    background: var(--bg-primary);
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+}
+
+.duplicate-entry-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+}
+
+.duplicate-entry-campaign {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--primary);
+}
+
+.duplicate-entry-original {
+    font-size: 0.75rem;
+    background: var(--success);
+    color: white;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.duplicate-entry-duplicate {
+    font-size: 0.75rem;
+    background: #f59e0b;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.duplicate-info {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.duplicate-info p {
+    margin: 4px 0;
+}
+
+.duplicate-info strong {
+    color: var(--text-primary);
+}
+
+.duplicate-info-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 12px;
+    padding: 8px 0;
+}
+
+.duplicate-info-row .duplicate-info {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.duplicate-actions {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+}
+
+/* Entry layout improvements */
+.duplicate-entry .entry-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.duplicate-entry .entry-label {
+    font-weight: 500;
+    color: var(--text-muted);
+}
+
+.duplicate-entry .entry-campaign {
+    font-weight: 600;
+    color: var(--primary);
+    font-size: 0.9rem;
+}
+
+.duplicate-entry .entry-links {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+/* Link badges for website and maps */
+.link-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.link-badge.website {
+    background: var(--primary);
+    color: white;
+}
+
+.link-badge.website:hover {
+    background: var(--primary-dark);
+    transform: translateY(-1px);
+}
+
+.link-badge.maps {
+    background: #ea4335;
+    color: white;
+}
+
+.link-badge.maps:hover {
+    background: #c5221f;
+    transform: translateY(-1px);
+}
+
+.link-badge.no-website {
+    background: var(--bg-secondary);
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+/* Stats summary improvements */
+.stats-summary {
+    display: flex;
+    gap: 20px;
+    padding: 16px;
+    background: var(--bg-secondary);
+    border-radius: 8px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.stats-summary .btn {
+    margin-left: auto;
+}
+
+.warning {
+    color: #f59e0b;
+}
+
+.success {
+    color: var(--success);
 }
