@@ -1,321 +1,167 @@
-# 🚀 Business Leads AI Automation v2.0
+# Business Leads Scraper
 
-**Open-source lead generation tool with AI-powered content creation and web dashboard**
+**🚀 Simple & powerful CLI tool for Google Maps lead generation with smart deduplication.**
 
-Generate business leads from Google Maps, create personalized marketing content using OpenAI, and manage everything through a modern web interface.
+Scrape business leads (name, address, phone, website, rating, etc.) from Google Maps in seconds. Perfect for sales teams, marketers, and agencies targeting USA, Europe, and the Middle East.
 
-[![GitHub stars](https://img.shields.io/github/stars/asiifdev/business-leads-ai-automation?style=social)](https://github.com/asiifdev/business-leads-ai-automation/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/asiifdev/business-leads-ai-automation?style=social)](https://github.com/asiifdev/business-leads-ai-automation/fork)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+--- 
 
----
+## ✨ Features
 
-## 🎯 What it does
-
-This tool helps you:
-- **Scrape business information** from Google Maps (name, address, phone, rating)
-- **Generate AI marketing content** personalized for each business
-- **Manage campaigns** through a modern web dashboard
-- **Track lead quality** with AI-powered scoring
-- **Export results** in CSV and JSON formats
-- **Create email and WhatsApp templates** automatically
-- **Monitor performance** with real-time analytics
-
-**Perfect for:** Digital agencies, freelance marketers, SME consultants, and business developers looking for an affordable lead generation solution with professional management tools.
+- **Lightning-fast scraping** from Google Maps
+- **Smart deduplication** – automatically skips previously scraped leads (based on phone & name+address)
+- **Blacklist system** – deleted leads are never scraped again
+- **Web dashboard** for managing, editing, and restoring leads
+- **Multiple output formats** – JSON + CSV
+- **Campaign-based organization** with custom names
+- **No duplicates** by default (optional with `-d` flag)
+- Supports **USA, Europe, and Middle East** markets
 
 ---
 
-## 🚀 Quick Start
-
-### Prerequisites
-- Node.js 16+
-- OpenAI API key ([get one here](https://platform.openai.com/))
-
-### Installation
+## 📥 Installation
 
 ```bash
-git clone https://github.com/asiifdev/business-leads-ai-automation.git
-cd business-leads-ai-automation
+# Clone the repository
+git clone 
+cd business-leads-scraper
+
+# Install dependencies
 npm install
-```
 
-### Setup
+🚀 Quick Start
+Run your first scrape:
+node index.js -q "Restaurant New York" -l 20
+This will scrape 20 restaurants in New York and save them in the output/ folder.
 
-```bash
-# Copy environment template
-cp .env.example .env
-
-# Add your OpenAI API key to .env
-OPENAI_API_KEY=your-openai-key-here
-```
-
-### Usage Options
-
-#### 🌐 Web Dashboard (Recommended)
-```bash
-# Start the web dashboard
-npm run web
-
-# Open your browser to http://localhost:3000
-# Create campaigns, manage leads, and view analytics through the web interface
-```
-
-#### 💻 Command Line Interface
-```bash
-# Basic CLI usage
-node index.js -q "Restaurant Jakarta" -l 20 -m "Increase your restaurant sales with digital marketing"
-
-# Results will be saved in the output/ folder
-```
-
----
-
-## 📊 Example Output
-
-### Input:
-```bash
-node index.js -q "Coffee Shop Jakarta" -l 5 -m "Boost your coffee shop with online ordering system"
-```
-
-### Generated Files:
-
-**📄 leads_[timestamp].csv**
-```csv
-ID,Name,Address,Phone,Website,Rating
-1,"Kopi Tuku","Jl. Kemang Raya No.1","+6281234567890","kopituku.com","4.5"
-2,"Filosofi Kopi","Jl. Senopati No.5","+6281234567891","filosofikopi.com","4.3"
-```
-
-**📧 email_template.txt**
-```
-Subject: Tingkatkan Penjualan Coffee Shop dengan Sistem Online
-
-Halo Tim Kopi Tuku,
-
-Saya melihat coffee shop Anda di Kemang dengan rating 4.5 stars - impressive!
-
-Apakah Anda tertarik meningkatkan penjualan dengan sistem online ordering yang terbukti efektif untuk coffee shop?
-
-[Your personalized message continues...]
-```
-
-**📱 whatsapp_template.txt**
-```
-Halo Kopi Tuku! ☕
-
-Lihat coffee shop Anda di Kemang rating 4.5⭐ - keren!
-
-Mau boost penjualan pakai sistem online ordering? 📱
-
-[Continues with personalized content...]
-```
-
----
-
-## ⚙️ Current Features
-
-### ✅ Core Features
-- **Google Maps scraping** with auto-scroll
-- **Business data extraction** (name, address, phone, rating, website)
-- **AI content generation** using OpenAI GPT
-- **Lead quality scoring** with AI intelligence
-- **Dual template creation** (email + WhatsApp)
-- **CSV and JSON export**
-- **Indonesian market optimization**
-- **Rate limiting** to avoid blocking
-
-### 🌐 Web Dashboard Features
-- **Modern web interface** for non-technical users
-- **Campaign management** with real-time progress tracking
-- **Lead management** with filtering and sorting
-- **Analytics dashboard** with performance insights
-- **Responsive design** for mobile and desktop
-- **Real-time notifications** via Server-Sent Events
-- **Data export** functionality (CSV/JSON)
-- **Campaign templates** for different industries
-
-### 🚧 Known Limitations
-- **Email finding** returns empty array (work in progress)
-- **Phone number validation** could be improved
-- **Error handling** needs enhancement for edge cases
-
-### 🎯 Planned Features
-- [ ] Fix email discovery functionality
-- [ ] Better phone number validation for Indonesian numbers
-- [ ] Multiple search engine support
-- [ ] Advanced AI prompt customization
-- [ ] Batch processing for multiple queries
-- [ ] API integrations (CRM, email marketing)
-
----
-
-## 📖 Usage Guide
-
-### 🌐 Web Dashboard
-For the best experience, use the web dashboard:
-
-```bash
-npm run web
-```
-
-Then open http://localhost:3000 in your browser. The web interface provides:
-- **Campaign Creation**: Easy form-based campaign setup
-- **Real-time Monitoring**: Live progress tracking
-- **Lead Management**: Filter, sort, and export leads
-- **Analytics**: Performance insights and reporting
-
-📚 **Full Web Dashboard Guide**: [docs/WEB_DASHBOARD_GUIDE.md](docs/WEB_DASHBOARD_GUIDE.md)
-
-### 💻 Command Line Options
-
-```bash
+📱 CLI Commands
+Basic Usage
 node index.js [options]
+Available Options
+Option
+Short
+Description
+Default
+--query
+-q
+Search query (business type + location)
+“restaurant new york”
+--length
+-l
+Number of results to scrape (max 100)
+20
+--name
+-n
+Custom campaign name for output folder
+auto-generated
+--allow-duplicates
+-d
+Include leads already scraped (default: skip)
+false
+--help
+-h
+Show help message
+-
+Examples
+# USA
+node index.js -q "Dental Clinic Los Angeles" -l 30
+node index.js -q "Auto Repair Chicago" -l 50 -n "Chicago_Auto_Q1"
 
-Required:
-  -q, --query <query>     Google Maps search query
-  -l, --limit <number>    Number of results to scrape
-  -m, --message <text>    Your marketing message for AI templates
+# Europe
+node index.js -q "Restaurant Paris" -l 50
+node index.js -q "Auto Repair London" -l 30
 
-Optional:
-  -o, --output <format>   Output format: csv or json (default: csv)
-  -h, --help             Show help information
+# Middle East
+node index.js -q "Real Estate Agency Dubai" -l 50
+node index.js -q "Restaurant Riyadh" -l 40
 
-Examples:
-  node index.js -q "Restaurant Bandung" -l 50 -m "Digital marketing for restaurants"
-  node index.js -q "Salon Jakarta" -l 30 -m "Online booking system" -o json
-```
+# Re-scrape (only new leads)
+node index.js -q "Plumber Miami" -l 50
 
-### 🚀 Available Scripts
+# Re-scrape with duplicates allowed
+node index.js -q "Plumber Miami" -l 50 -d
 
-```bash
-npm run web          # Start web dashboard (recommended)
-npm run web:dev      # Start web dashboard in development mode
-npm run cli          # Run CLI version
-npm test             # Run tests
-```
+🔄 Smart Deduplication
+When you run the same query again, the tool automatically skips duplicates:
+	•	Primary check: Phone number
+	•	Fallback check: Name + Address
+	•	Blacklist: Deleted leads are permanently excluded
+After every scrape you’ll see a summary:
+📋 Deduplication Results:
+   • Total scraped: 50
+   • New leads: 23
+   • Skipped (already scraped): 27
+   • Skipped (blacklisted): 0
+To reset duplicate tracking: delete data/history.json (blacklist stays intact).
 
----
+🌐 Web Dashboard
+Manage your leads visually:
+npm run web
+# Opens http://localhost:3000
+Features:
+	•	View campaigns
+	•	Edit leads
+	•	Delete → moves to Trash & blacklists
+	•	Restore from Trash
+	•	Permanent delete
+	•	Empty Trash
 
-## 🔧 Configuration
+📁 Output Structure
+Leads are saved in organized campaign folders:
+output/
+└── campaign__/
+    ├── leads.json
+    ├── leads.csv
+    └── campaign_info.json
+JSON Format (example)
+{
+  "name": "Business Name",
+  "address": "123 Main Street",
+  "phone": "+1 555 123 4567",
+  "rating": "4.7",
+  "website": "https://example.com",
+  "referenceLink": "https://google.com/maps/place/...",
+  "hasWebsite": true,
+  "possibleEmails": ["info@example.com"],
+  "source": "Google Maps",
+  "scrapedAt": "2025-12-26T10:30:00.000Z"
+}
+The CSV file is ready to open in Excel or Google Sheets.
 
-Edit `.env` file for customization:
+🌍 Supported Markets
+	•	USA: New York, Los Angeles, Chicago, Miami, Boston, Seattle, etc.
+	•	Europe: London, Paris, Berlin, Madrid, Amsterdam, Milan, etc.
+	•	Middle East: Dubai, Abu Dhabi, Riyadh, Doha, Kuwait City, etc.
 
-```env
-# Required
-OPENAI_API_KEY=your-openai-key-here
+💡 Tips for Best Results
+	•	Be specific: "Dental Clinic Manhattan" works better than just "dentist"
+	•	Always include city name
+	•	Start small (-l 10) to test
+	•	Use -n for organized campaign names
+	•	Leads with phone numbers are highest value
 
-# Web Dashboard (optional)
-PORT=3000                     # Web dashboard port
-HOST=localhost                # Web dashboard host
+❓ Troubleshooting
+Issue
+Solution
+No results
+Check internet / spelling / try different query
+Browser errors
+Run npm install puppeteer again
+Slow scraping
+Reduce -l or wait between large scrapes
+Linux server issues
+Install required Puppeteer dependencies
 
-# Scraping Configuration (optional)
-DELAY_BETWEEN_SCRAPES=2000    # Milliseconds between requests
-MAX_RETRIES=3                 # Retry failed requests
-OUTPUT_FORMAT=csv             # Default output format
+📂 Data Files
+data/
+├── history.json          # Duplicate tracking
+├── blacklist.json        # Permanently excluded leads
+├── trash/                # Soft-deleted leads
+└── user_data.json        # Your notes
 
-# Database (optional)
-DB_PATH=./data/leads.db       # SQLite database path
-```
+Made for lead generation pros who want clean, reusable, and organized business data.
+Happy scraping! 🔥
 
----
-
-## 🌟 Why Use This Tool?
-
-### 💰 Cost Effective
-- **Free to use** vs $99-299/month for SaaS alternatives
-- **Open source** - modify as needed
-- **No monthly subscriptions**
-
-### 🎯 Indonesian Market Focus
-- **Local business understanding** in AI prompts
-- **WhatsApp marketing** integration (popular in Indonesia)
-- **Indonesian language** optimization
-
-### 🛠️ Developer Friendly
-- **Full source code access**
-- **Easy to customize and extend**
-- **Well-documented codebase**
-- **Active community support**
-
----
-
-## 🤝 Contributing
-
-We welcome contributions! Here's how you can help:
-
-1. **Report bugs** via GitHub Issues
-2. **Suggest features** you'd like to see
-3. **Submit pull requests** for improvements
-4. **Share your use cases** and success stories
-
-### Development Setup
-
-```bash
-# Fork the repo, then clone your fork
-git clone https://github.com/YOUR_USERNAME/business-leads-ai-automation.git
-cd business-leads-ai-automation
-npm install
-
-# Create a feature branch
-git checkout -b feature/your-feature-name
-
-# Make your changes and test
-npm test
-
-# Submit a pull request
-```
-
----
-
-## ⚖️ Legal & Ethics
-
-- **Public data only** - scrapes publicly available information
-- **Respectful scraping** - includes rate limiting
-- **No spam** - use for legitimate business outreach only
-- **MIT License** - free for commercial use
-
-Please read our [DISCLAIMER.md](DISCLAIMER.md) for full legal information.
-
----
-
-## 📞 Support & Documentation
-
-### 📚 Documentation
-- **[Web Dashboard Guide](docs/WEB_DASHBOARD_GUIDE.md)**: Complete user guide for the web interface
-- **[Deployment Guide](docs/DEPLOYMENT_GUIDE.md)**: Production deployment instructions
-- **[API Documentation](docs/API.md)**: REST API reference (coming soon)
-
-### 🆘 Getting Help
-- **GitHub Issues**: For bug reports and feature requests
-- **Discussions**: For questions and community chat
-- **Email**: [your-email] for urgent matters
-
-### 🚀 Deployment
-Ready for production? Check our comprehensive deployment guide:
-- VPS/Server deployment
-- Docker containerization
-- Cloud platform deployment (Heroku, AWS, etc.)
-- SSL/HTTPS setup
-- Monitoring and maintenance
-
-📚 **Full Deployment Guide**: [docs/DEPLOYMENT_GUIDE.md](docs/DEPLOYMENT_GUIDE.md)
-
----
-
-## 🙏 Acknowledgments
-
-- Built with [Puppeteer](https://pptr.dev/) for web scraping
-- Powered by [OpenAI](https://openai.com/) for AI content generation
-- Inspired by the need for affordable lead generation tools in Indonesia
-
----
-
-## 📄 License
-
-MIT License - see [LICENSE](LICENSE) file for details.
-
----
-
-**⭐ Star this repo if you find it useful!**
-
-Made with ❤️ for Indonesian businesses
+Simple CLI tool for Google Maps lead generation with smart deduplication
+**✅ Ready to copy-paste!**  
+Just copy everything above and save it as `README.md` in your GitHub repository. It’s clean, professional, and user-friendly for anyone visiting your project. Let me know if you want to add screenshots, badges, or a license section!
